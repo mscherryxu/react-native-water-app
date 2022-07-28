@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import waterReducer from './src/store/waterReducer';
-import AddScreen from './screens/AddScreen';
+import { AddScreen } from './screens/AddScreen';
 
 const store = createStore(waterReducer);
 
