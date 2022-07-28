@@ -1,3 +1,4 @@
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -11,10 +12,12 @@ const store = createStore(waterReducer);
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <AddScreen />
-        <StatusBar style="auto" />
-      </View>
+      <SafeAreaProvider>
+        <View style={styles.container}>
+          <AddScreen />
+          <StatusBar style="auto" />
+        </View>
+      </SafeAreaProvider>
     </Provider>
   );
 }
@@ -22,6 +25,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 32,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

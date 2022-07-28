@@ -11,13 +11,18 @@ import waterReducer, {
   resetGoal,
   setGoal,
 } from '../src/store/waterReducer';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 
 export function AddScreen() {
   const [currentWater, setCurrentWater] = useState(() => setInitialWater());
+  const [waterGoal, setWaterGoal] = useState(() => setInitialGoal());
 
   function setInitialWater() {
     return 0;
+  }
+
+  function setInitialGoal() {
+    return 128;
   }
 
   function addCup() {
@@ -32,26 +37,46 @@ export function AddScreen() {
     return setCurrentWater(currentWater + 16);
   }
 
+  function reset() {
+    setCurrentWater(0);
+    setWaterGoal(128);
+    return;
+  }
+
+  const goalMet = useMemo(() => {
+    if (currentWater >= waterGoal) {
+      return false;
+    } else {
+      return true;
+    }
+  }, [currentWater]);
+
   return (
     <View style={styles.wholeScreen}>
       <Text>Temp Water Name</Text>
       <View style={styles.container}>
-        <View style={styles.goal}></View>
+        <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
         <View style={styles.body}>
           <View style={styles.waterContainer}>
-            <View>
+            <View style={styles.waterButtons}>
               <Text style={styles.waterLevel}>{currentWater}</Text>
             </View>
             <View style={styles.waterLabel}></View>
           </View>
-          <View style={styles.waterButtons}>
-            <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup} />
-            <Button title={`Add Can (12oz / 360mL)`} onPress={addCan} />
-            <Button title={`Add Bottle (16oz / 480mL)`} onPress={addBottle} />
-          </View>
+          {goalMet ? (
+            <View style={styles.waterButtons}>
+              <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup} />
+              <Button title={`Add Can (12oz / 360mL)`} onPress={addCan} />
+              <Button title={`Add Bottle (16oz / 480mL)`} onPress={addBottle} />
+            </View>
+          ) : (
+            <Text>Congrats, you did it!</Text>
+          )}
         </View>
       </View>
-      <View style={styles.resetButton}>{/* <ResetButton /> */}</View>
+      <View style={styles.resetButton}>
+        <Button title={'Reset'} onPress={reset} />
+      </View>
     </View>
   );
 }
@@ -77,8 +102,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 10,
+    backgroundColor: 'lightgreen',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -89,14 +114,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   body: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 10,
+    flexDirection: 'row',
+    backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
   },
   waterContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -104,12 +130,12 @@ const styles = StyleSheet.create({
     //make match water container eventually
     //height: 100????
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignContent: 'center',
+    backgroundColor: 'lightblue',
     justifyContent: 'center',
   },
   waterLabel: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -117,6 +143,8 @@ const styles = StyleSheet.create({
   },
   waterButtons: {
     flex: 1,
+    flexDirection: 'column',
+    borderWidth: 5,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,7 +152,7 @@ const styles = StyleSheet.create({
   },
   resetButton: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
