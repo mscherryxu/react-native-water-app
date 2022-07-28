@@ -31,26 +31,19 @@ const ProgressBar = ({ step, steps, width }) => {
           setHeight(newHeight);
         }}
         style={{
-          width,
+          width: 30,
           backgroundColor: 'powderblue',
           borderRadius: width,
           overflow: 'hidden',
         }}
       >
-        <Animated.View
+        <View
           style={{
-            width,
-            width: '100%',
-            borderRadius: width,
+            width: 30,
             backgroundColor: 'blue',
             position: 'absolute',
             left: 0,
             top: 0,
-            transform: [
-              {
-                translateY: animatedValue,
-              },
-            ],
           }}
         />
       </View>
