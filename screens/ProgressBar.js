@@ -16,7 +16,9 @@ const ProgressBar = ({ step, steps, width }) => {
 
   React.useEffect(() => {
     // height + height * step / steps
-    reactive.setValue(height + (height * step) / steps);
+    //when width is 0, -0 + ( 0 * 0 / 0 ) = 0
+    //
+    reactive.setValue(-height + (height * step) / steps);
   }, [step, height]);
   return (
     <>
@@ -24,8 +26,8 @@ const ProgressBar = ({ step, steps, width }) => {
         {step}/{steps}
       </Text>
       <View
-        onLayout={(e) => {
-          const newHeight = e.nativeEvent.layout.height;
+        onLayout={(event) => {
+          const newHeight = event.nativeEvent.layout.height;
           setHeight(newHeight);
         }}
         style={{
@@ -38,9 +40,9 @@ const ProgressBar = ({ step, steps, width }) => {
         <Animated.View
           style={{
             width,
-            height: '100%',
+            width: '100%',
             borderRadius: width,
-            backgroundColor: 'skyblue',
+            backgroundColor: 'blue',
             position: 'absolute',
             left: 0,
             top: 0,

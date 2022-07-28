@@ -2,6 +2,7 @@ import {
   Text,
   StyleSheet,
   View,
+  Animated,
   Dimensions,
   ActivityIndicator,
   Button,
@@ -59,32 +60,30 @@ export function AddScreen() {
       <View style={styles.container}>
         <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
         <View style={styles.body}>
-          <Text style={styles.waterLevel}>{currentWater}</Text>
           <View style={styles.waterContainer}>
-            {/* <View style={styles.waterScale}></View> */}
             <ProgressBar
               step={currentWater}
               steps={waterGoal}
-              height={waterGoal}
+              width={60}
             />
-            {/* <View style={styles.waterBarContainer}>
-              <View style={styles.waterBar}></View>
-            </View> */}
-            <View style={styles.waterLabel}></View>
           </View>
-          {goalMet ? (
-            <View style={styles.waterButtons}>
-              <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup} />
-              <Button title={`Add Can (12oz / 360mL)`} onPress={addCan} />
-              <Button title={`Add Bottle (16oz / 480mL)`} onPress={addBottle} />
-            </View>
-          ) : (
-            <Text>Congrats, you did it!</Text>
-          )}
-        </View>
+          <View style={styles.waterButtonHolder}>
+            {goalMet ? (
+              <View style={styles.waterButtons}>
+                <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup} />
+                <Button title={`Add Can (12oz / 360mL)`} onPress={addCan} />
+                <Button title={`Add Bottle (16oz / 480mL)`} onPress={addBottle} />
+              </View>
+            ) : (
+              <Text>Congrats, you did it!</Text>
+            )}
+          </View>
+          </View>
       </View>
-      <View style={styles.resetButton}>
-        <Button title={'Reset'} onPress={reset} />
+      <View style={styles.footer}>
+        <View style={styles.resetButton}>
+          <Button title={'Reset'} onPress={reset} />
+        </View>
       </View>
     </View>
   );
@@ -108,13 +107,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   container: {
-    flex: 10,
+    flex: 20,
     backgroundColor: 'lightgreen',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   goal: {
     flex: 1,
@@ -123,18 +121,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   body: {
-    flex: 10,
+    flex: 30,
     flexDirection: 'row',
     backgroundColor: 'green',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   waterContainer: {
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: 'white',
-    justifyContent: 'center',
-    padding: 40,
+    borderWidth: 5,
+    padding: 20,
+    flexDirection: 'row'
   },
   waterScale: {
     flex: 1,
@@ -173,14 +171,19 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     borderWidth: 5,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'center',
     flexDirection: 'column',
   },
   resetButton: {
-    flex: 1,
     backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    padding: 2
   },
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+  }
 });
+
