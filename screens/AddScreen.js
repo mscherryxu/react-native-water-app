@@ -12,6 +12,7 @@ import waterReducer, {
   setGoal,
 } from '../src/store/waterReducer';
 import React, { useState, useMemo } from 'react';
+import ProgressBar from './ProgressBar';
 
 export function AddScreen() {
   const [currentWater, setCurrentWater] = useState(() => setInitialWater());
@@ -26,6 +27,7 @@ export function AddScreen() {
   }
 
   function addCup() {
+    // styles.waterBar.height += 8;
     return setCurrentWater(currentWater + 8);
   }
 
@@ -57,10 +59,17 @@ export function AddScreen() {
       <View style={styles.container}>
         <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
         <View style={styles.body}>
+          <Text style={styles.waterLevel}>{currentWater}</Text>
           <View style={styles.waterContainer}>
-            <View style={styles.waterButtons}>
-              <Text style={styles.waterLevel}>{currentWater}</Text>
-            </View>
+            {/* <View style={styles.waterScale}></View> */}
+            <ProgressBar
+              step={currentWater}
+              steps={waterGoal}
+              height={waterGoal}
+            />
+            {/* <View style={styles.waterBarContainer}>
+              <View style={styles.waterBar}></View>
+            </View> */}
             <View style={styles.waterLabel}></View>
           </View>
           {goalMet ? (
@@ -122,10 +131,26 @@ const styles = StyleSheet.create({
   },
   waterContainer: {
     flex: 1,
-    backgroundColor: 'blue',
-    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'white',
     justifyContent: 'center',
+    padding: 40,
   },
+  waterScale: {
+    flex: 1,
+    backgroundColor: 'lightgrey',
+    width: '15%',
+    borderWidth: 1,
+    borderColor: 'grey',
+  },
+  // waterBarContainer: {
+  //   flex: 1,
+  //   backgroundColor: 'lightgrey',
+  //   width: '35%',
+  //   borderWidth: 1,
+  //   borderColor: 'steelblue',
+  //   position: 'relative',
+  // },
   waterLevel: {
     //make match water container eventually
     //height: 100????
@@ -135,12 +160,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     justifyContent: 'center',
   },
-  waterLabel: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
+  // waterBar: {
+  //   backgroundColor: 'powderblue',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   flexDirection: 'column',
+  //   height: 0,
+  //   position: 'absolute',
+  // },
   waterButtons: {
     flex: 1,
     flexDirection: 'column',
