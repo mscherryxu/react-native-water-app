@@ -61,20 +61,49 @@ export function AddScreen() {
       <Text>Temp Water Name</Text>
       <View style={styles.container}>
         <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
+        <Text styles={{ textAlign: "center" }}>
+          {currentWater}/{waterGoal}
+        </Text>
         <View style={styles.body}>
           <View style={styles.waterContainer}>
-            <ProgressBarAndroid
-              styleAttr="Horizontal"
-              indeterminate={false}
-              progress={currentWater / waterGoal}
+            <View
               style={{
-                transform: [{ rotate: "270deg" }, { scaleY: 50 }, { scaleX: 10 }],
-                color: "steelblue",
+                flex: 1,
+                justifyContent: "space-between",
+                borderWidth: 1,
+                alignItems: "center",
               }}
-            />
-            <Text>
-              {currentWater}/{waterGoal}
-            </Text>
+            >
+              <Text >{waterGoal}</Text>
+              <Text >{waterGoal * 0.75}</Text>
+              <Text >{waterGoal * 0.5}</Text>
+              <Text >{waterGoal * 0.25}</Text>
+              <Text >0</Text>
+            </View>
+            <View
+              style={{
+                flex: 2,
+                flexDirection: "row",
+                borderWidth: 1,
+                alignContent: "center",
+              }}
+            >
+              <ProgressBarAndroid
+                styleAttr="Horizontal"
+                indeterminate={false}
+                progress={currentWater / waterGoal}
+                style={{
+                  transform: [
+                    { rotate: "270deg" },
+                    { scaleY: 4 },
+                    { scaleY: -4 },
+                    { scaleX: 4.3 },
+                  ],
+                  flexBasis: "100%",
+                  color: "steelblue",
+                }}
+              />
+            </View>
           </View>
           <View style={styles.waterButtonHolder}>
             {goalMet ? (
@@ -94,7 +123,9 @@ export function AddScreen() {
                   fontWeight: "bold",
                   textAlign: "center",
                 }}
-              >Congrats, you did it!</Text>
+              >
+                Congrats, you did it!
+              </Text>
             )}
           </View>
         </View>
@@ -148,6 +179,15 @@ const styles = StyleSheet.create({
   },
   waterContainer: {
     flex: 2,
+    height: "100%",
+    backgroundColor: "white",
+    borderWidth: 5,
+    padding: 20,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  waterScale: {
+    flex: 1,
     height: "100%",
     backgroundColor: "white",
     borderWidth: 5,
