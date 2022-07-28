@@ -4,32 +4,55 @@ import {
     View,
     Dimensions,
     ActivityIndicator,
+    Button, 
   } from "react-native";
+import waterReducer, { updateConsumption, resetGoal, setGoal } from "../src/store/waterReducer";
+import React, { useState, useEffect } from "react";
 
-return (
-    <View style={styles.wholeScreen}>
-        <View style={styles.container}>
-            <View style={styles.goal}>
+export function AddScreen ()  {
+    const [currentWater, setCurrentWater] = useState(() => setInitialWater());
+    
+    function setInitialWater() {
+        return 0;
+    }
+
+    function addCup () {
+        return setCurrentWater(currentWater + 8);
+    }
+
+    function addCan () {
+        return setCurrentWater(currentWater + 12);
+    }
+
+    function addBottle () {
+    }
+
+    return (
+        <View style={styles.wholeScreen}>
+            <Text>Temp Water Name</Text>
+            <View style={styles.container}>
+                <View style={styles.goal}>
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.waterContainer}>
+                        <View>
+                            <Text style={styles.waterLevel}>{currentWater}</Text>
+                        </View>
+                        <View style={styles.waterLabel}></View>
+                    </View>
+                    <View style={styles.waterButtons}>
+                        <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup}/>
+                        <Button title={`Add Can (12oz / 360mL)`} onPress={addCan}/>
+                        <Button title={`Add Bottle (16oz / 480mL)`} onPress={addBottle}/>
+                    </View>
+                </View>
             </View>
-            <View style={styles.body}>
-                <View style={styles.waterContainer}>
-                    <WaterHolder waterLevel={waterLevel}>
-                        <WaterLevel style={styles.waterLevel}></WaterLevel>
-                    </WaterHolder>
-                    <WaterLabel style={styles.waterLabel}></WaterLabel>
-                </View>
-                <View style={styles.waterButtons}>
-                    <Button1 />
-                    <Button2 />
-                    <Button3 />
-                </View>
+            <View style={styles.resetButton}>
+                {/* <ResetButton /> */}
             </View>
         </View>
-        <View style={styles.resetButton}>
-            <ResetButton />
-        </View>
-    </View>
-)
+    )
+}
 
 //button 1, 2, 3
 /* on press, button will change color and water level will increase based on the button pressed */
