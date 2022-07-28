@@ -1,21 +1,35 @@
 import {
+    Text,
     StyleSheet,
     View,
-    Button,
-    Text
+    Dimensions,
+    ActivityIndicator,
   } from "react-native";
-import waterReducer, { updateConsumption, resetGoal, setGoal } from "../src/store/waterReducer";
-import React, { useState, useEffect } from "react";
 
-function AddScreen ()  {
-
-    return (
-        <View>
-            <Text>Temp Water Name</Text>
+return (
+    <View style={styles.wholeScreen}>
+        <View style={styles.container}>
+            <View style={styles.goal}>
+            </View>
+            <View style={styles.body}>
+                <View style={styles.waterContainer}>
+                    <WaterHolder waterLevel={waterLevel}>
+                        <WaterLevel style={styles.waterLevel}></WaterLevel>
+                    </WaterHolder>
+                    <WaterLabel style={styles.waterLabel}></WaterLabel>
+                </View>
+                <View style={styles.waterButtons}>
+                    <Button1 />
+                    <Button2 />
+                    <Button3 />
+                </View>
+            </View>
         </View>
-    )
-}
-
+        <View style={styles.resetButton}>
+            <ResetButton />
+        </View>
+    </View>
+)
 
 //button 1, 2, 3
 /* on press, button will change color and water level will increase based on the button pressed */
@@ -29,33 +43,6 @@ on press changes from oz to mL */
 
 //WaterLevel 
 /* will grow vertically based on the water level */
-
-// /*
-// 
-//         <View style={styles.wholeScreen}>
-//             <View style={styles.container}>
-//                 <View style={styles.goal}>
-//                 </View>
-//                 <View style={styles.body}>
-//                     <View style={styles.waterContainer}>
-//                         <WaterHolder waterLevel={waterLevel}>
-//                             <WaterLevel style={styles.waterLevel}></WaterLevel>
-//                         </WaterHolder>
-//                         <WaterLabel style={styles.waterLabel}></WaterLabel>
-//                     </View>
-//                     <View style={styles.waterButtons}>
-//                         <Button1 />
-//                         <Button2 />
-//                         <Button3 />
-//                     </View>
-//                 </View>
-//             </View>
-//             <View style={styles.resetButton}>
-//                 <ResetButton />
-//             </View>
-//         </View>
-//     )
-// */
 
 const styles = StyleSheet.create({
     wholeScreen: {

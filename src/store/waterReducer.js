@@ -1,7 +1,7 @@
 // set goal of water intake
 const SET_GOAL = 'SET_GOAL';
 
-const setGoal = (waterGoal) => {
+export const setGoal = (waterGoal) => {
   return {
     type: SET_GOAL,
     waterGoal,
@@ -11,7 +11,7 @@ const setGoal = (waterGoal) => {
 // update consumption
 const UPDATE_CONSUMPTION = 'UPDATE_CONSUMPTION';
 
-const updateConsumption = (adjustedWater) => {
+export const updateConsumption = (adjustedWater) => {
   return {
     type: UPDATE_CONSUMPTION,
     adjustedWater,
@@ -21,7 +21,7 @@ const updateConsumption = (adjustedWater) => {
 // reset consumption
 const RESET = 'RESET';
 
-const resetGoal = (newGoal) => {
+export const resetGoal = (newGoal) => {
   return {
     type: RESET_GOAL,
     newGoal,
