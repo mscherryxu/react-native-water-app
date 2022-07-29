@@ -2,17 +2,15 @@ import {
   Text,
   StyleSheet,
   View,
-  Animated,
   Pressable,
   ProgressBarAndroid,
   Button,
   Image,
-  TouchableOpacity,
 } from "react-native";
 import React, { useState, useMemo } from "react";
-import AltProgress from "./AltProgress";
-import { RootTagContext } from "react-native/Libraries/ReactNative/RootTag";
+import LinearGradient from 'react-native-linear-gradient';
 import GoalModal from "./GoalModal";
+
 
 export function AddScreen() {
   const [currentWater, setCurrentWater] = useState(() => setInitialWater());
@@ -56,7 +54,7 @@ export function AddScreen() {
   return (
     <View style={styles.wholeScreen}>
       <View style={styles.headerView}>
-        <Text style={styles.header}>!~ Hydro Homie ~!</Text>
+        <Text style={styles.header}>!~ HYDRO HOMIE ~!</Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
@@ -96,7 +94,7 @@ export function AddScreen() {
                     { rotate: "270deg" },
                     { scaleY: 4 },
                     { scaleY: -4 },
-                    { scaleX: 4.3 },
+                    { scaleX: 5.1 },
                   ],
                   flexBasis: "100%",
                   color: "steelblue",
@@ -110,7 +108,7 @@ export function AddScreen() {
                 <View>
                   <Pressable onPress={() => addCup()}>
                     <Image
-                      style={{ resizeMode: "center", width: 100, height: 100 }}
+                      style={{ resizeMode: "center", width: 80, height: 60 }}
                       source={require("../public/water-cup.png")}
                     />
                   </Pressable>
@@ -119,7 +117,7 @@ export function AddScreen() {
                 <View>
                   <Pressable onPress={() => addCup()}>
                     <Image
-                      style={{ resizeMode: "center", width: 100, height: 80, marginBottom: 8 }}
+                      style={{ resizeMode: "center", width: 80, height: 60, marginBottom: 5 }}
                       source={require("../public/can.png")}
                     />
                   </Pressable>
@@ -128,7 +126,7 @@ export function AddScreen() {
                 <View>
                   <Pressable onPress={() => addCup()}>
                     <Image
-                      style={{ resizeMode: "center", width: 100, height: 100, marginBottom: 3 }}
+                      style={{ resizeMode: "center", width: 80, height: 60, marginBottom: 3 }}
                       source={require("../public/water-bottle.png")}
                     />
                   </Pressable>
@@ -187,16 +185,17 @@ const styles = StyleSheet.create({
   },
   wholeScreen: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    backgroundColor: '#BFD7EA'
   },
   container: {
     flex: 20,
     alignItems: "center",
     justifyContent: "space-between",
+    backgroundColor: '#BFD7EA'
   },
   goal: {
-    backgroundColor: "#fff",
+    backgroundColor: '#BFD7EA',
     textAlign: "center",
     justifyContent: "center",
     padding: 3,
@@ -204,7 +203,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 30,
     flexDirection: "row",
-    backgroundColor: "green",
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -212,10 +210,13 @@ const styles = StyleSheet.create({
     flex: 2,
     height: "100%",
     backgroundColor: "white",
-    borderWidth: 5,
     padding: 20,
+    borderWidth: 1,
+    borderColor: "#91AEC1",
     flexDirection: "row",
     justifyContent: "center",
+    borderRadius: 20,
+    marginRight: 15,
   },
   waterScale: {
     flex: 1,
@@ -229,10 +230,9 @@ const styles = StyleSheet.create({
   waterButtonHolder: {
     flex: 1,
     height: "100%",
-    backgroundColor: "lightgrey",
-    borderColor: "grey",
-    borderWidth: 5,
+    backgroundColor: '#BFD7EA',
     alignItems: "center",
+    marginLeft: 15,
   },
   waterLevel: {
     //make match water container eventually
@@ -247,15 +247,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "stretch",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     borderRadius: 100,
     backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#91AEC1",
   },
   footer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
   },
+  resetButton : {
+  }
 });
 
 // remove/undo
