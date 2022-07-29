@@ -20,7 +20,7 @@ const GoalModal = (props) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>
-              Congrats! You're a true hydro homie!
+              Congrats! You're a true HYDRO HOMIE!
             </Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'powderblue',
+    backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -59,6 +59,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    borderWidth: 3,
+    borderColor: '#C33C54',
   },
   button: {
     borderRadius: 20,
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'powderblue',
   },
   buttonClose: {
-    backgroundColor: 'skyblue',
+    backgroundColor: '#C33C54',
   },
   textStyle: {
     color: 'white',
