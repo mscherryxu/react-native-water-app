@@ -6,16 +6,17 @@ import {
   Dimensions,
   ProgressBarAndroid,
   Button,
-} from "react-native";
+} from 'react-native';
 import waterReducer, {
   updateConsumption,
   resetGoal,
   setGoal,
-} from "../src/store/waterReducer";
-import React, { useState, useMemo } from "react";
-import ProgressBar from "./ProgressBar";
-import AltProgress from "./AltProgress";
-import { RootTagContext } from "react-native/Libraries/ReactNative/RootTag";
+} from '../src/store/waterReducer';
+import React, { useState, useMemo } from 'react';
+import ProgressBar from './ProgressBar';
+import AltProgress from './AltProgress';
+import { RootTagContext } from 'react-native/Libraries/ReactNative/RootTag';
+import GoalModal from './GoalModal';
 
 export function AddScreen() {
   const [currentWater, setCurrentWater] = useState(() => setInitialWater());
@@ -61,7 +62,7 @@ export function AddScreen() {
       <Text>Temp Water Name</Text>
       <View style={styles.container}>
         <Text style={styles.goal}>Goal: {waterGoal} oz</Text>
-        <Text styles={{ textAlign: "center" }}>
+        <Text styles={{ textAlign: 'center' }}>
           {currentWater}/{waterGoal}
         </Text>
         <View style={styles.body}>
@@ -69,23 +70,23 @@ export function AddScreen() {
             <View
               style={{
                 flex: 1,
-                justifyContent: "space-between",
+                justifyContent: 'space-between',
                 borderWidth: 1,
-                alignItems: "center",
+                alignItems: 'center',
               }}
             >
-              <Text >{waterGoal}</Text>
-              <Text >{waterGoal * 0.75}</Text>
-              <Text >{waterGoal * 0.5}</Text>
-              <Text >{waterGoal * 0.25}</Text>
-              <Text >0</Text>
+              <Text>{waterGoal}</Text>
+              <Text>{waterGoal * 0.75}</Text>
+              <Text>{waterGoal * 0.5}</Text>
+              <Text>{waterGoal * 0.25}</Text>
+              <Text>0</Text>
             </View>
             <View
               style={{
                 flex: 2,
-                flexDirection: "row",
+                flexDirection: 'row',
                 borderWidth: 1,
-                alignContent: "center",
+                alignContent: 'center',
               }}
             >
               <ProgressBarAndroid
@@ -94,13 +95,13 @@ export function AddScreen() {
                 progress={currentWater / waterGoal}
                 style={{
                   transform: [
-                    { rotate: "270deg" },
+                    { rotate: '270deg' },
                     { scaleY: 4 },
                     { scaleY: -4 },
                     { scaleX: 4.3 },
                   ],
-                  flexBasis: "100%",
-                  color: "steelblue",
+                  flexBasis: '100%',
+                  color: 'steelblue',
                 }}
               />
             </View>
@@ -108,23 +109,21 @@ export function AddScreen() {
           <View style={styles.waterButtonHolder}>
             {goalMet ? (
               <View style={styles.waterButtons}>
-                <Button title={`Add Cup (8oz / 240mL)`} onPress={addCup} />
-                <Button title={`Add Can (12oz / 360mL)`} onPress={addCan} />
-                <Button
-                  title={`Add Bottle (16oz / 480mL)`}
-                  onPress={addBottle}
-                />
+                <Button title={`Add 8oz`} onPress={addCup} />
+                <Button title={`Add 12oz`} onPress={addCan} />
+                <Button title={`Add 16oz`} onPress={addBottle} />
               </View>
             ) : (
               <Text
                 style={{
-                  color: "red",
+                  color: 'red',
                   fontSize: 20,
-                  fontWeight: "bold",
-                  textAlign: "center",
+                  fontWeight: 'bold',
+                  textAlign: 'center',
                 }}
               >
                 Congrats, you did it!
+                <GoalModal reset={reset} />
               </Text>
             )}
           </View>
@@ -132,7 +131,7 @@ export function AddScreen() {
       </View>
       <View style={styles.footer}>
         <View style={styles.resetButton}>
-          <Button title={"Reset"} onPress={reset} />
+          <Button title={'Reset'} onPress={reset} />
         </View>
       </View>
     </View>
@@ -155,51 +154,51 @@ on press changes from oz to mL */
 const styles = StyleSheet.create({
   wholeScreen: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
   },
   container: {
     flex: 20,
-    backgroundColor: "lightgreen",
-    alignItems: "center",
-    justifyContent: "space-between",
+    backgroundColor: 'lightgreen',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   goal: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   body: {
     flex: 30,
-    flexDirection: "row",
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    backgroundColor: 'green',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   waterContainer: {
     flex: 2,
-    height: "100%",
-    backgroundColor: "white",
+    height: '100%',
+    backgroundColor: 'white',
     borderWidth: 5,
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   waterScale: {
     flex: 1,
-    height: "100%",
-    backgroundColor: "white",
+    height: '100%',
+    backgroundColor: 'white',
     borderWidth: 5,
     padding: 20,
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   waterButtonHolder: {
     flex: 1,
-    height: "100%",
-    backgroundColor: "lightgrey",
-    borderColor: "grey",
+    height: '100%',
+    backgroundColor: 'lightgrey',
+    borderColor: 'grey',
     borderWidth: 5,
   },
   // waterBarContainer: {
@@ -214,10 +213,10 @@ const styles = StyleSheet.create({
     //make match water container eventually
     //height: 100????
     flex: 1,
-    flexDirection: "column",
-    alignContent: "center",
-    backgroundColor: "lightblue",
-    justifyContent: "center",
+    flexDirection: 'column',
+    alignContent: 'center',
+    backgroundColor: 'lightblue',
+    justifyContent: 'center',
   },
   // waterBar: {
   //   backgroundColor: 'powderblue',
@@ -229,21 +228,25 @@ const styles = StyleSheet.create({
   // },
   waterButtons: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     borderWidth: 5,
-    backgroundColor: "#fff",
-    alignItems: "stretch",
-    justifyContent: "center",
-    flexDirection: "column",
+    backgroundColor: '#fff',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    flexDirection: 'column',
   },
   resetButton: {
-    backgroundColor: "#000",
-    justifyContent: "flex-end",
+    backgroundColor: '#000',
+    justifyContent: 'flex-end',
     padding: 2,
   },
   footer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
 });
+
+// remove/undo
+// custom add/remove fl oz
+// cup icon
