@@ -145,16 +145,26 @@ export function AddScreen() {
                 </View>
               </View>
             ) : (
-              <View style={styles.waterButtons}>
-                <Image
-                  style={{ resizeMode: 'center', width: 80 }}
-                  source={require('../public/water.png')}
-                />
-                <Image
-                  style={{ resizeMode: 'center', width: 80 }}
-                  source={require('../public/stayThirsty.jpg')}
-                />
-                <GoalModal reset={reset} />
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'column',
+                  justifyContent: 'space-evenly',
+                }}
+              >
+                <View style={{ paddingTop: 140, paddingBottom: 50 }}>
+                  <Image
+                    style={{ resizeMode: 'center', width: 120 }}
+                    source={require('../public/watermeme.png')}
+                  />
+                </View>
+                <View>
+                  <Image
+                    style={{ resizeMode: 'center', width: 120 }}
+                    source={require('../public/stayThirsty.png')}
+                  />
+                  <GoalModal reset={reset} />
+                </View>
               </View>
             )}
           </View>
@@ -206,7 +216,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#BFD7EA',
     textAlign: 'center',
     justifyContent: 'center',
-    padding: 3,
+    padding: 7,
   },
   body: {
     flex: 30,
