@@ -6,14 +6,10 @@ import {
   Dimensions,
   ProgressBarAndroid,
   Button,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
-import waterReducer, {
-  updateConsumption,
-  resetGoal,
-  setGoal,
-} from '../src/store/waterReducer';
 import React, { useState, useMemo } from 'react';
-import ProgressBar from './ProgressBar';
 import AltProgress from './AltProgress';
 import { RootTagContext } from 'react-native/Libraries/ReactNative/RootTag';
 import GoalModal from './GoalModal';
@@ -109,9 +105,18 @@ export function AddScreen() {
           <View style={styles.waterButtonHolder}>
             {goalMet ? (
               <View style={styles.waterButtons}>
+                <TouchableOpacity activeOpacity={0.5}>
+                  <Image
+                    source={require('../public/water-cup.png')}
+                    style={{ resizeMode: 'center' }}
+                  />
+                </TouchableOpacity>
                 <Button title={`Add 8oz`} onPress={addCup} />
                 <Button title={`Add 12oz`} onPress={addCan} />
                 <Button title={`Add 16oz`} onPress={addBottle} />
+                <View style={styles.resetButton}>
+                  <Button title={'Reset'} onPress={reset} color="gold" />
+                </View>
               </View>
             ) : (
               <Text
@@ -129,11 +134,7 @@ export function AddScreen() {
           </View>
         </View>
       </View>
-      <View style={styles.footer}>
-        <View style={styles.resetButton}>
-          <Button title={'Reset'} onPress={reset} />
-        </View>
-      </View>
+      <View style={styles.footer}></View>
     </View>
   );
 }
@@ -159,7 +160,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 20,
-    backgroundColor: 'lightgreen',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -201,14 +201,6 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     borderWidth: 5,
   },
-  // waterBarContainer: {
-  //   flex: 1,
-  //   backgroundColor: 'lightgrey',
-  //   width: '35%',
-  //   borderWidth: 1,
-  //   borderColor: 'steelblue',
-  //   position: 'relative',
-  // },
   waterLevel: {
     //make match water container eventually
     //height: 100????
@@ -218,27 +210,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     justifyContent: 'center',
   },
-  // waterBar: {
-  //   backgroundColor: 'powderblue',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   flexDirection: 'column',
-  //   height: 0,
-  //   position: 'absolute',
-  // },
   waterButtons: {
     flex: 1,
     flexDirection: 'column',
-    borderWidth: 5,
-    backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
-  resetButton: {
-    backgroundColor: '#000',
-    justifyContent: 'flex-end',
-    padding: 2,
+    justifyContent: 'space-around',
+    borderRadius: 100,
+    backgroundColor: '#fff',
   },
   footer: {
     flex: 1,
