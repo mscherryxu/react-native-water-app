@@ -2,7 +2,7 @@
 
 ## React Native Water App
 
-Video Link: https://youtu.be/0w3XzNbXxfc
+Video Link: https://www.youtube.com/watch?v=-MyLxWGZzgI
 
 Hi everyone, this is Cherry and Warren.
 
